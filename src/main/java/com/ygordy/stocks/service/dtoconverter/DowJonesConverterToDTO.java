@@ -6,6 +6,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.function.Function;
 
+/**
+ * Converts Entity to DTO
+ */
 @Component
 public class DowJonesConverterToDTO implements Function<DowJonesStockEntity, DowJonesStock> {
     @Override
