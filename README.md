@@ -11,9 +11,9 @@
 
 Java 8
 PostgreSQL DB setup:
-url: jdbc:postgresql://localhost:5432/stocksappdb
-username: stocksappuser
-password: stocksappuser123
+* url: jdbc:postgresql://localhost:5432/stocksappdb
+* username: stocksappuser
+* password: stocksappuser123
 
 ### Build
 
