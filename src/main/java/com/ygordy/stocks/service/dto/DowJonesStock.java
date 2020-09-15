@@ -67,7 +67,7 @@ public class DowJonesStock implements Serializable {
 
     @Override
     public String toString() {
-        return "StockDTO{"
+        return "DowJonesStock {"
                 + "id=" + getId()
                 + ", quarter='" + getQuarter() + "'"
                 + ", stockSymbol='" + getStockSymbol() + "'"

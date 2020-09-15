@@ -109,7 +109,7 @@ public class DowJonesStockEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "DowJonesStock{"
+        return "DowJonesStockEntity {"
                 + "id=" + getId()
                 + ", quarter='" + getQuarter() + "'"
                 + ", stockSymbol='" + getStockSymbol() + "'"
