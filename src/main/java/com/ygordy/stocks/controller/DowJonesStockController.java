@@ -4,13 +4,14 @@ import com.ygordy.stocks.service.DowJonesStockService;
 import com.ygordy.stocks.service.dto.DowJonesStock;
 import com.ygordy.stocks.util.HttpHeadersBuilder;
 import com.ygordy.stocks.util.StocksAppConstants;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import java.net.URI;
 import java.util.List;
 
@@ -22,6 +23,10 @@ public class DowJonesStockController {
     @Autowired
     DowJonesStockService dowJonesStockService;
 
+    public DowJonesStockController(DowJonesStockService dowJonesStockService) {
+        this.dowJonesStockService = dowJonesStockService;
+    }
+
     @PostMapping("/djstock/bulkupload")
     public ResponseEntity bulkStockUpload(@RequestParam("file") MultipartFile multipartFile,
                                           @RequestParam("setupByUserId") String userId) {
@@ -30,7 +35,8 @@ public class DowJonesStockController {
             dowJonesStockService.saveBulkStocks(userId, multipartFile);
             String message = "Uploaded the file successfully: " + multipartFile.getOriginalFilename();
             return ResponseEntity.created(new URI("/api/djstock/bulkupload"))
-                    .headers(HttpHeadersBuilder.createEntityCreatedAlert(StocksAppConstants.DJ_ENTITY_NAME, "Uploaded the file successfully"))
+                    .headers(HttpHeadersBuilder.createEntityCreatedAlert(StocksAppConstants.DJ_ENTITY_NAME,
+                            "Uploaded the file successfully"))
                     .body(message);
         } catch (Exception e) {
             String message = "Could not upload the file: " + multipartFile.getOriginalFilename() + "!";
@@ -48,7 +54,8 @@ public class DowJonesStockController {
         List<DowJonesStock> dowJonesStockList = dowJonesStockService.findStockListBySymbol(symbolId);
         if (dowJonesStockList == null || dowJonesStockList.size() == 0) {
             return ResponseEntity.status(HttpStatus.NO_CONTENT)
-                    .headers(HttpHeadersBuilder.createWarningAlert(StocksAppConstants.DJ_ENTITY_NAME, "null", "List empty"))
+                    .headers(HttpHeadersBuilder.createWarningAlert(StocksAppConstants.DJ_ENTITY_NAME, "null",
+                            "List empty"))
                     .body(null);
         }
         return ResponseEntity.created(new URI("/api/djstock/list"))
@@ -68,7 +75,9 @@ public class DowJonesStockController {
                     .body(null);
         }
         return ResponseEntity.created(new URI("/api/stock/create" + result.getId()))
-                .headers(HttpHeadersBuilder.createEntityCreatedAlert(StocksAppConstants.DJ_ENTITY_NAME, result.getId().toString()))
+                .headers(HttpHeadersBuilder.createEntityCreatedAlert(StocksAppConstants.DJ_ENTITY_NAME,
+                        result.getId().toString()))
                 .body(result);
     }
+
 }

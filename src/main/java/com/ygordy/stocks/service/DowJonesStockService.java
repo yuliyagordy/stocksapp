@@ -6,12 +6,12 @@ import com.ygordy.stocks.service.dto.DowJonesStock;
 import com.ygordy.stocks.service.dtoconverter.DowJonesConverterToDTO;
 import com.ygordy.stocks.service.dtoconverter.DowJonesConverterToEntity;
 import com.ygordy.stocks.util.CSVFileHelper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +38,7 @@ public class DowJonesStockService {
         this.dowJonesConverterToEntity = dowJonesConverterToEntity;
         this.csvFileHelper = csvFileHelper;
     }
+
 
     public void saveBulkStocks(String userIdStr, MultipartFile multipartFile) {
         try {
