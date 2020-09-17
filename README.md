@@ -19,6 +19,10 @@ PostgreSQL DB setup:
 
 mvn clean install
 
+###  Testing
+
+Automated tests for Functions of Controller are done using Mockito framework
+
 ### Run
 
 mvn spring-boot:run
