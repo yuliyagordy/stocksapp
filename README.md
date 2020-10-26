@@ -1,5 +1,13 @@
 ## Stocks Application with REST API
 
+### Description
+
+There is a collection of records from the [Dow Jones Index from 2011](http://archive.ics.uci.edu/ml/datasets/Dow+Jones+Index#) 
+The perpouse of this project is to build a Spring Boot application server that would allow users to perform the following operations:
+
+1. Upload a bulk data set - you can find data (dow_jones_index.data) file in the directory */data
+2. Query for data by stock symbol like "AA", "AXP", "BA", "BAC" and others that you can find in the data file
+3. Add a new record
 
 ### Assumptions:
 
